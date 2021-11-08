@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { loginUser } from "../redux/ActionCreators";
 import { useDispatch } from 'react-redux';
@@ -35,7 +34,7 @@ export default function Login() {
 }
 
   return (
-    <div className="rightside col-lg-12" style={{ backgroundColor: "purple" }}>
+    <div className="rightside" style={{ backgroundColor: "purple" }}>
       <h4 style={{ textAlign: 'center', fontWeight: 500, fontSize: "2rem", color: "#fff" }}>Welcome to FX Tracker</h4>
       <div className="login__box">
 
@@ -52,7 +51,7 @@ export default function Login() {
               onChange={e => setPassword(e.target.value)} />
           </FormGroup>
           <p></p>
-          <Button type="submit" value="submit" className="btn btn-primary btn-lg btn-block">Login</Button>
+          <Button type="submit" value="submit">Login</Button>
           <p style={{ textAlign: 'right', fontWeight: 500, fontSize: "1.5rem" }}>
             {/* Button that appears like an Anchor */}
             <button type="button" className="link-button" onClick={toggleModal}>
@@ -61,6 +60,7 @@ export default function Login() {
           </p>
         </Form>
       </div>
+
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>Register</ModalHeader>
         <ModalBody>
@@ -156,8 +156,7 @@ export default function Login() {
                   }}
                 />
               </Col>
-            </Row>
-
+            </Row>            
             <Row className="form-group">
               <Label htmlFor="bvnnum" md={2}>BVN</Label>
               <Col md={10}>
@@ -180,7 +179,6 @@ export default function Login() {
                 />
               </Col>
             </Row>
-
             <Row className="form-group">
               <Label htmlFor="address" md={2}>Address</Label>
               <Col md={10}>
@@ -203,7 +201,6 @@ export default function Login() {
                 />
               </Col>
             </Row>
-
             <Row className="form-group">
               <Col md={{ size: 10, offset: 2 }}>
                 <Button type="submit" onClick={() => dispatch(actions.submit('feedback'))}>
