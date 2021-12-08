@@ -4,9 +4,7 @@ import Main from './components/Main';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { useSelector } from 'react-redux';
-
 import './App.css';
-//import './volt/index.scss';
 
 function App() {
 
@@ -16,23 +14,10 @@ function App() {
     <Route {...rest} render={(props) => (
       auth.isAuthenticated
         ?
-        <Main {...props} />
+        <Component {...props} />
         :
         <Redirect to={{
           pathname: '/login',
-          state: { from: location }
-        }} />
-    )} />
-  );
-
-  const PrivateRoute2 = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-      !auth.isAuthenticated
-        ?
-        <Login {...props} />
-        :
-        <Redirect to={{
-          pathname: '/',
           state: { from: location }
         }} />
     )} />
@@ -56,8 +41,8 @@ function App() {
       <TransitionGroup>
         <CSSTransition key={location.key} classNames="page" timeout={300}>
           <Switch>
-            <PrivateRoute exact path='/' />
-            <PrivateRoute2 exact path='/login' />
+            <PrivateRoute exact path='/' component={Main}/>
+            <Route path='/login' component={Login} /> 
           </Switch>
         </CSSTransition>
       </TransitionGroup>
